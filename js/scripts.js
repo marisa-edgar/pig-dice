@@ -1,17 +1,49 @@
-function Dice(currentRoll, currentRoll2,  secondRoll, secondRoll2, thirdRoll, thirdRoll2){
-  this.currentRoll = currentRoll;
-  this.secondRoll = secondRoll;
-  this.thirdRoll = thirdRoll;
-  this.currentRoll2 = currentRoll2;
-  this.secondRoll2 = secondRoll2;
-  this.thirdRoll2 = thirdRoll2;
+function Dice(){
+  this.diceRolls = [];
 }
 
-Dice.prototype.Roll = function() {
-  if(this.currentRoll === 1){
-    this.total === false;
-  }else if(this.currentRoll >1){
-    return this.total === true; 
-  }
+/*Dice.prototype.diceRolls = function() {
+  let roll = (Math.floor(Math.random() *6) + 1);
+  return roll;
+};*/
+
+function randomDice(min, max) {
+  min = Math.ceil(1);
+  max = Math.floor(6);
+  return Math.floor(Math.random() * (6 -1) + 1);
+
 }
+
+Dice.prototype.addRoll = function(diceRolls) {
+  this.diceRolls
+}
+
+/*Dice.prototype.addRolls = function () {
+  let currentTotal = 0;
+  let Rolls =  Math.floor(Math.random() * (6 -1) + 1);
+  this.Rolls.forEach(function(number) {
+    currentTotal += number;
+  })
+  return currentTotal;
+};*/
+
+
+/*assign id to the different rolls of dice,
+
+*create pseudo data base to store the outcomes,
+
+*Displays total value of roll to user,
+
+*keep the inputted number from the previous roll if they decide to hold it,
+
+*takes the total of the outcomes and adds the new outcome to it,
+
+*tally's the outcomes and displays to user,
+
+*replicate functions for player 2
+
+*dont allow either player to roll until its their turn
+*continues until total outcome is >= 100,
+
+
 

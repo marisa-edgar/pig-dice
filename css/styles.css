@@ -1,0 +1,19 @@
+.column1 {
+width: 40%;
+height: 80%;
+display: block;
+margin: 7px;
+background-color:#f5f5f5;
+text-align:center; 
+}
+
+.column2 {
+  width: 40%;
+  height: 80%;
+  display: block;
+  margin: 7px;
+  padding: auto;
+  float: right;
+  background-color:#f5f5f5;
+  text-align:center;
+}
