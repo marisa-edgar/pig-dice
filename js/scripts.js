@@ -1,22 +1,90 @@
 function Dice(){
-  this.diceRolls = [];
-}
+  this.roll = 0;
+  this.tempScore = 0;
+  this.totalScore =0;
+  this.turn = turn;
+  /*this.playerName;*/
 
+}
+/*this.diceRolls = [];*/
 /*Dice.prototype.diceRolls = function() {
   let roll = (Math.floor(Math.random() *6) + 1);
   return roll;
 };*/
+/*let newNumber = Math.floor(Math.random() * (6 -1) + 1); 
+    if (newNumber === 1) {
+      return false;
+      alert("Sorry your lost your turn") 
+    } else {
+      this.totalScore = newNumber;
+      return totalScore;
+    }*/
 
-function randomDice(min, max) {
-  min = Math.ceil(1);
-  max = Math.floor(6);
-  return Math.floor(Math.random() * (6 -1) + 1);
+function randomDice() {
+  return Math.floor(Math.random() * 6 + 1); 
 
 }
 
-Dice.prototype.addRoll = function(diceRolls) {
-  this.diceRolls
+Dice.prototype.rollOne = function(){
+  if (this.roll === 1) {
+    this.tempScore = 0;
+      prompt("Sorry you lost your turn");
+  } else {
+    this.tempScore += this.roll;
+  }
 }
+Dice.prototype.hold = function(){
+  this.totalScore += this.tempScore;
+  this.tempScore = 0;
+    prompt("Your turn is over");
+
+}
+Dice.prototype.checkWinner = function () {
+  if (this.totalScore >= 100) {
+    prompt("YOU WON!");
+  }
+}
+
+
+
+
+
+
+$(document).ready(function() {
+    $("button#start").submit(function(event) {
+    player1 = new Player(true);
+    player2 = new Player(false);
+    $(".player-console").show();
+    $(".start-menu").hide();
+
+    let player1Name = $("#player-one-name").val();
+    let player2Name = $("#player-two-name").val();
+
+    player1.player1Name=player1Name;
+    player2.player1Name=player2Name;
+  });
+
+  $("button#start-game").click(function(event) {
+    $(".console").hide();
+    clearValues();
+
+    player1.newGame();
+    player2.newGame();
+    $("#round-total-1").empty();
+    $("#total-score-1").empty();
+    $("#dice-roll-1").empty();
+    $("#round-total-2").empty();
+    $("#total-score-2").empty();
+    $("#die-roll-2").empty();
+
+    $(".start-menu").show().Dice
+  });
+  
+  });
+  
+
+
+
 
 /*Dice.prototype.addRolls = function () {
   let currentTotal = 0;

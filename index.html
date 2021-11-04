@@ -14,15 +14,50 @@
   <div class= "jumbotron">
     <h1>Pig Dice</h1>
   </div>
-  <div class="column1">
-    <img src="dice.jpg" alt="one die" class="photo">
-      <button type= "submit" class="btn btn-dark">Roll Player One</button>
-      <button type="submit" class= "btn btn-dark">Hold Player One</button>
+  <div class="start-menu cointainer">
+  <form id= "player-1">
+    <div class = "form-group">
+      <label for= "playerName">Player 1 Name</label>
+      <input required class="player name form-control" id="player-one-name" type="text">
+    </div>
   </div>
-  <div class="column2">
-    <img src="dice.jpg" alt="one die" class="photo">
-      <button type="submit" class= "btn btn-dark"> Roll Player Two</button>
-      <button type="submit" class="btn btn-dark">Hold Player Two</button>
+  </form>
+  <form id="player-2">
+  <div class="form-group">
+    <label for="player2Name">Player 2 Name</label>
+    <input required class="player2Name form-control" id="player-two-name" type="text">
+  </div>
+  </form>
+  <button id="start" class="btn-info-btn">GO!</button> 
+    
+  
+  <div class="Console">
+    <button id="start-game" class="btn-success btn">NEW GAME</button>
+    <div class="row">
+      <div class="column1">
+        <img src="dice.jpg" alt="one die" class="photo">
+        <h2>Player one:<span id ="playerName"></span></h2>
+        <button type= "submit" class="btn btn-dark">Roll</button>
+        <button type="submit" class= "btn btn-dark">Hold</button>
+        <h2>Roll:<span id="die-roll-1"></span></h2>
+        <p><strong>Round one Score:</strong> <span id="round-1-total"></span></p>
+        <p><strong>Total Score: </strong><span id="total-score-1"></span></p>
+      </div>
+    </div>
+  
+
+    <div class="row2">
+      <div class="column2">
+        <img src="dice.jpg" alt="one die" class="photo">
+        <h2>Player Two:<span id ="player2Name"></span></h2>
+        <button type= "submit" class="btn btn-dark">Roll</button>
+        <button type="submit" class= "btn btn-dark">Hold</button>
+        <h2>Roll:<span id="die-roll-2"></span></h2>
+        <p><strong>Round one Score:</strong> <span id="round-2-total"></span></p>
+        <p><strong>Total Score: </strong><span id="total-score-2"></span></p>
+      </div>
+    
+    
 </div>
 </body>
 </html>
