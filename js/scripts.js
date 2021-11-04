@@ -1,117 +1,120 @@
-function Dice(){
+
+
+
+function Player(turn) {
   this.roll = 0;
-  this.tempScore = 0;
-  this.totalScore =0;
+  this.tempscore = 0;
+  this.totalscore = 0;
   this.turn = turn;
-  /*this.playerName;*/
-
+  this.playerName;
 }
-/*this.diceRolls = [];*/
-/*Dice.prototype.diceRolls = function() {
-  let roll = (Math.floor(Math.random() *6) + 1);
-  return roll;
-};*/
-/*let newNumber = Math.floor(Math.random() * (6 -1) + 1); 
-    if (newNumber === 1) {
-      return false;
-      alert("Sorry your lost your turn") 
-    } else {
-      this.totalScore = newNumber;
-      return totalScore;
-    }*/
+let player1="";
+let player2="";
 
-function randomDice() {
-  return Math.floor(Math.random() * 6 + 1); 
-
+let throwdice = function () {
+  return Math.floor(6*Math.random())+1;
 }
 
-Dice.prototype.rollOne = function(){
+Player.prototype.rollone = function() {
   if (this.roll === 1) {
-    this.tempScore = 0;
-      prompt("Sorry you lost your turn");
+  this.tempscore = 0;
+  alert("Sorry " + this.playerName + ", Rolling a 1 means you lost your turn!")
+  
   } else {
-    this.tempScore += this.roll;
-  }
-}
-Dice.prototype.hold = function(){
-  this.totalScore += this.tempScore;
-  this.tempScore = 0;
-    prompt("Your turn is over");
-
-}
-Dice.prototype.checkWinner = function () {
-  if (this.totalScore >= 100) {
-    prompt("YOU WON!");
+  this.tempscore += this.roll;
   }
 }
 
 
+Player.prototype.hold = function () {
+  this.totalscore += this.tempscore;
+  this.tempscore = 0;
+
+  alert(this.playerName + ", your turn is over!");
+}
 
 
+Player.prototype.winnerCheck = function () {
+  if (this.totalscore >= 100) {
+    alert(this.playerName + " You are the winner!");
+  }
+}
+
+Player.prototype.newGame = function () {
+
+  this.roll = 0;
+  this.tempscore = 0;
+  this.totalscore = 0;
+  this.playerName ="";
+}
+
+let clearValues = function(){
+  $(".player1Name").val("");
+  $(".player2Name").val("");
+}
 
 
 $(document).ready(function() {
-    $("button#start").submit(function(event) {
+
+  $("button#start").click(function(event){
     player1 = new Player(true);
-    player2 = new Player(false);
+    player2 =  new Player(false);
     $(".player-console").show();
     $(".start-menu").hide();
 
-    let player1Name = $("#player-one-name").val();
-    let player2Name = $("#player-two-name").val();
+    let player1Name = $(".player1Name").val();
+    $("#player1Name").text(player1Name);
 
-    player1.player1Name=player1Name;
-    player2.player1Name=player2Name;
+    let player2Name = $(".player2Name").val();
+    $("#player2Name").text(player2Name);
+
+    player1.playerName=player1Name;
+    player2.playerName=player2Name;
+
   });
-
-  $("button#start-game").click(function(event) {
-    $(".console").hide();
+  $("button#new-game").click(function(event){
+    $(".player-console").hide();
     clearValues();
-
     player1.newGame();
     player2.newGame();
     $("#round-total-1").empty();
     $("#total-score-1").empty();
-    $("#dice-roll-1").empty();
+    $("#die-roll-1").empty();
     $("#round-total-2").empty();
     $("#total-score-2").empty();
     $("#die-roll-2").empty();
 
-    $(".start-menu").show().Dice
+    $(".start-menu").show();
   });
-  
+
+  $("button#player1-roll").click(function(event){
+    player1.roll = throwdice();
+    $("#die-roll-1").text(player1.roll);
+    player1.rollone();
+    $("#round-total-1").text(player1.tempscore);
   });
-  
 
+  $("button#player2-roll").click(function(event){
+    player2.roll = throwdice();
+    $("#die-roll-2").text(player2.roll);
+    player2.rollone();
+    $("#round-total-2").text(player2.tempscore);
+  });
 
+  $("button#player1-hold").click(function(event){
+    player1.hold();
+    $("#total-score-1").text(player1.totalscore);
+    $("#round-total-1").empty();
+    $("#die-roll-1").empty();
+    player1.winnerCheck();
+  });
 
+  $("button#player2-hold").click(function(event){
+    player2.hold();
+    $("#total-score-2").text(player2.totalscore);
+    $("#round-total-2").empty();
+    $("#die-roll-2").empty();
+    player2.winnerCheck();
+  });
 
-/*Dice.prototype.addRolls = function () {
-  let currentTotal = 0;
-  let Rolls =  Math.floor(Math.random() * (6 -1) + 1);
-  this.Rolls.forEach(function(number) {
-    currentTotal += number;
-  })
-  return currentTotal;
-};*/
-
-
-/*assign id to the different rolls of dice,
-
-*create pseudo data base to store the outcomes,
-
-*Displays total value of roll to user,
-
-*keep the inputted number from the previous roll if they decide to hold it,
-
-*takes the total of the outcomes and adds the new outcome to it,
-
-*tally's the outcomes and displays to user,
-
-*replicate functions for player 2
-
-*dont allow either player to roll until its their turn
-*continues until total outcome is >= 100,
-
-
-
+});
